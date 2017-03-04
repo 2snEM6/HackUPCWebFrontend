@@ -35,21 +35,35 @@
   <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
 
 </head>
-<body>
+<body ng-cloak>
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
 
-  <div layout="row">
-    <div flex="60">
+  <div layout="row" layout-xs="column">
+    <div flex>
+      <div id="map"></div>
+      <script>
+        var map;
 
-      <div my-map=""></div>
-
+        function initMap() {
+          var barcelonaPos = {lat: 41.390205, lng: 2.154007};
+          map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 5,
+            center: barcelonaPos
+          });
+          var marker = new google.maps.Marker({
+            position: barcelonaPos,
+            map: map
+          });
+        }
+      </script>
     </div>
-    <div flex="40">
-      <div class="navBardemoBasicUsage" flex >
+    <!--
+    <div>
+      <div class="navBardemoBasicUsage" flex="no-shrink">
         <md-content class="md-padding">
           <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
             <md-nav-item md-nav-href="#!/high" name="high">
@@ -68,6 +82,41 @@
 
       </div>
     </div>
+    -->
+
+    <script>
+
+
+    </script>
+
+    <div flex="no-shrink">
+      <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+          <md-tab label="one">
+            <md-content class="md-padding">
+              <h1 class="md-display-2">Tab One</h1>
+              <ng-include src="high"></ng-include>
+            </md-content>
+          </md-tab>
+          <md-tab label="two">
+            <md-content class="md-padding">
+              <h1 class="md-display-2">Tab Two</h1>
+              <ng-include src="medium"></ng-include>
+            </md-content>
+          </md-tab>
+          <md-tab label="three">
+            <md-content class="md-padding">
+              <h1 class="md-display-2">Tab Three</h1>
+              <ng-include src="low"></ng-include>
+            </md-content>
+          </md-tab>
+        </md-tabs>
+      </md-content>
+    </div>
+
+
+
+
   </div>
 
   <!--<div>Angular seed app: v<span app-version></span></div>-->
@@ -80,6 +129,9 @@
   <!-- Angular Material Library -->
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1SgRxNmZF9Vxdz5KsyEhyRF3PqE4wc0A&callback=initMap">
+  </script>
 
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="app.js"></script>

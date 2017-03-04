@@ -51,7 +51,18 @@
     margin: 20px;
     background-color: #FFF2E0; }
 
-  #gmaps {
-    width: 450px;
-    height: 450px;
+  #map {
+    height: 600px;
+    width: 100%;
   }
+
+  .tabsdemoDynamicHeight md-content {
+    background-color: transparent !important; }
+  .tabsdemoDynamicHeight md-content md-tabs {
+    background: #f6f6f6;
+    border: 1px solid #e1e1e1; }
+  .tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
+    background: white; }
+  .tabsdemoDynamicHeight md-content h1:first-child {
+    margin-top: 0; }
+
