@@ -27,6 +27,22 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
+  <div class="navBardemoBasicUsage" >
+    <md-content class="md-padding">
+      <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+        <md-nav-item md-nav-href="#!/high" name="high">
+          High Emergency
+        </md-nav-item>
+        <md-nav-item md-nav-href="#!/medium" name="medium">
+          Medium Emergency
+        </md-nav-item>
+        <md-nav-item md-nav-href="#!/low" name="low">
+          Low Emergency
+        </md-nav-item>
+      </md-nav-bar>
+    </md-content>
+  </div>
+
   <div ng-view></div>
 
   <!--<div>Angular seed app: v<span app-version></span></div>-->
@@ -40,9 +56,6 @@
   <!-- Angular Material Library -->
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 
-  <script type="text/javascript">
-    angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
-  </script>
 
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="app.js"></script>

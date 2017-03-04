@@ -6,13 +6,13 @@ angular.module('myApp.home', ['ngRoute'])
     $routeProvider.when('/', {
         templateUrl: 'home/home.html',
         controller: 'HomeCtrl'
-    }).when('high', {
+    }).when('/high', {
         templateUrl: 'home/high.html',
         controller: 'HomeCtrl'
-    }).when('medium', {
+    }).when('/medium', {
         templateUrl: 'home/medium.html',
         controller: 'HomeCtrl'
-    }).when('low', {
+    }).when('/low', {
         templateUrl: 'home/low.html',
         controller: 'HomeCtrl'
     });
@@ -21,13 +21,6 @@ angular.module('myApp.home', ['ngRoute'])
 .controller('HomeCtrl', function($scope) {
 
     $scope.currentNavItem = 'high';
-
-
-
-
-
-
-
 
 
     var imagePath = 'img/list/60.jpeg';
