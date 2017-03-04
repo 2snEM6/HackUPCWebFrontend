@@ -22,8 +22,21 @@ angular.module('myApp.home', ['ngRoute'])
 
     $scope.currentNavItem = 'high';
 
-    var ref = firebase.database().ref().child("emergencies");
+    var ref = firebase.database().ref("emergencies");
     $scope.emergencies = $firebaseArray(ref);
+
+    $scope.emergencies.forEach(function (item) {
+        if (item.type == 2) {
+
+        } else if (item.type == 1) {
+
+        } else if (item.type == 0) {
+
+        }
+    });
+
+    console.log($scope.emergencies);
+
 
 });
 
