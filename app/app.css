@@ -50,3 +50,8 @@
     padding: 50px;
     margin: 20px;
     background-color: #FFF2E0; }
+
+  #gmaps {
+    width: 450px;
+    height: 450px;
+  }
