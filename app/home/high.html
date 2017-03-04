@@ -2,7 +2,7 @@
     <div flex-gt-sm="100" flex="">
         <md-content>
             <md-list flex="">
-                <md-list-item class="md-3-line" ng-repeat="item in emergencies" ng-click="null">
+                <md-list-item class="md-3-line" ng-repeat="item in highEmergencies" ng-click="null">
                     <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}">
                     <div class="md-list-item-text" layout="column">
                         <h3>{{ item.creationDate }}</h3>

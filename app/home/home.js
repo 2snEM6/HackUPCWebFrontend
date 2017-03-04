@@ -23,20 +23,13 @@ angular.module('myApp.home', ['ngRoute'])
     $scope.currentNavItem = 'high';
 
     var ref = firebase.database().ref("emergencies");
-    $scope.emergencies = $firebaseArray(ref);
+    var queryLowEmergencies = ref.orderByChild("type").equalTo(0);
+    var queryMediumEmergencies = ref.orderByChild("type").equalTo(1);
+    var queryHighEmergencies = ref.orderByChild("type").equalTo(2);
 
-    $scope.emergencies.forEach(function (item) {
-        if (item.type == 2) {
-
-        } else if (item.type == 1) {
-
-        } else if (item.type == 0) {
-
-        }
-    });
-
-    console.log($scope.emergencies);
-
+    $scope.lowEmergencies = $firebaseArray(queryLowEmergencies);
+    $scope.mediumEmergencies = $firebaseArray(queryMediumEmergencies);
+    $scope.highEmergencies = $firebaseArray(queryHighEmergencies);
 
 });
 

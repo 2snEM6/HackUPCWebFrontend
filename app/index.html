@@ -42,25 +42,31 @@
   <![endif]-->
 
 
-  <div class="navBardemoBasicUsage" >
-    <md-content class="md-padding">
-      <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-        <md-nav-item md-nav-href="#!/high" name="high">
-          High Emergency
-        </md-nav-item>
-        <md-nav-item md-nav-href="#!/medium" name="medium">
-          Medium Emergency
-        </md-nav-item>
-        <md-nav-item md-nav-href="#!/low" name="low">
-          Low Emergency
-        </md-nav-item>
-      </md-nav-bar>
-    </md-content>
+  <div layout="row">
+    <div flex="60">
 
-    <div ng-view></div>
+    </div>
+    <div flex="40">
+      <div class="navBardemoBasicUsage" flex >
+        <md-content class="md-padding">
+          <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+            <md-nav-item md-nav-href="#!/high" name="high">
+              High Emergency
+            </md-nav-item>
+            <md-nav-item md-nav-href="#!/medium" name="medium">
+              Medium Emergency
+            </md-nav-item>
+            <md-nav-item md-nav-href="#!/low" name="low">
+              Low Emergency
+            </md-nav-item>
+          </md-nav-bar>
+        </md-content>
 
+        <div ng-view></div>
+
+      </div>
+    </div>
   </div>
-
 
   <!--<div>Angular seed app: v<span app-version></span></div>-->
 
