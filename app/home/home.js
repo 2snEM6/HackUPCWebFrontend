@@ -18,50 +18,12 @@ angular.module('myApp.home', ['ngRoute'])
     });
 }])
 
-.controller('HomeCtrl', function($scope) {
+.controller('HomeCtrl', function($scope, $firebaseArray) {
 
     $scope.currentNavItem = 'high';
 
-
-    var imagePath = 'img/list/60.jpeg';
-
-    $scope.todos = [
-        {
-            face : imagePath,
-            what: 'Brunch this weekend?',
-            who: 'Min Li Chan',
-            when: '3:08PM',
-            notes: " I'll be in your neighborhood doing errands"
-        },
-        {
-            face : imagePath,
-            what: 'Brunch this weekend?',
-            who: 'Min Li Chan',
-            when: '3:08PM',
-            notes: " I'll be in your neighborhood doing errands"
-        },
-        {
-            face : imagePath,
-            what: 'Brunch this weekend?',
-            who: 'Min Li Chan',
-            when: '3:08PM',
-            notes: " I'll be in your neighborhood doing errands"
-        },
-        {
-            face : imagePath,
-            what: 'Brunch this weekend?',
-            who: 'Min Li Chan',
-            when: '3:08PM',
-            notes: " I'll be in your neighborhood doing errands"
-        },
-        {
-            face : imagePath,
-            what: 'Brunch this weekend?',
-            who: 'Min Li Chan',
-            when: '3:08PM',
-            notes: " I'll be in your neighborhood doing errands"
-        }
-    ];
+    var ref = firebase.database().ref().child("emergencies");
+    $scope.emergencies = $firebaseArray(ref);
 
 });
 
