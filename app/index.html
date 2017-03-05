@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Alife</title>
   <meta name="description" content="Keep safe, keep alive">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
   <link rel="stylesheet" href="app.css">
@@ -34,6 +34,19 @@
   <!-- AngularFire -->
   <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.css" rel="stylesheet">
+
+
 </head>
 <body ng-cloak>
 
@@ -42,100 +55,69 @@
   <![endif]-->
 
 
+  <!--Navbar-->
+  <nav class="navbar navbar-toggleable-md navbar-dark bg-primary">
+    <div class="container">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <h2 class="md-display-1">Alife</h2>
+      </a>
+      <div class="collapse navbar-collapse" id="navbarNav1">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link">Home <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <div layout="row" layout-xs="column">
     <div flex>
       <div id="map"></div>
       <script>
         var map;
+        var markers = [];
 
         function initMap() {
           var barcelonaPos = {lat: 41.390205, lng: 2.154007};
           map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 5,
+            zoom: 4,
             center: barcelonaPos
           });
-          var marker = new google.maps.Marker({
-            position: barcelonaPos,
-            map: map
-          });
         }
-      </script>
-    </div>
-    <div flex layout="column">
-
-      <div flex="no-shrink" ng-controller="HomeCtrl">
-        <md-content>
-          <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="High Emergency" ng-click="getHighEmergencies()">
-              <md-content class="md-padding">
-                <div layout-gt-sm="row" layout="column" class="listdemoBasicUsage">
-                  <div flex-gt-sm="100" flex="">
-                    <md-content>
-                      <md-list flex="">
-                        <md-list-item class="md-3-line" ng-repeat="item in highEmergencies" ng-click="null">
-                          <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}">
-                          <div class="md-list-item-text" layout="column">
-                            <h3>{{ item.creationDate }}</h3>
-                            <h4>{{ item.location.latitude + " " + item.location.longitude }}</h4>
-                            <p>{{ item.type }}</p>
-                          </div>
-                        </md-list-item>
-                      </md-list>
-                    </md-content>
-                  </div>
-                </div>
-              </md-content>
-            </md-tab>
-            <md-tab label="Medium Emergency" ng-click="getMediumEmergencies()">
-              <md-content class="md-padding">
-                <div layout-gt-sm="row" layout="column" class="listdemoBasicUsage">
-                  <div flex-gt-sm="100" flex="">
-                    <md-content>
-                      <md-list flex="">
-                        <md-list-item class="md-3-line" ng-repeat="item in mediumEmergencies" ng-click="null">
-                          <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}">
-                          <div class="md-list-item-text" layout="column">
-                            <h3>{{ item.creationDate }}</h3>
-                            <h4>{{ item.location.latitude + " " + item.location.longitude }}</h4>
-                            <p>{{ item.type }}</p>
-                          </div>
-                        </md-list-item>
-                      </md-list>
-                    </md-content>
-                  </div>
-                </div>
-
-              </md-content>
-            </md-tab>
-            <md-tab label="Low Emergency" ng-click="getLowEmergencies()">
-              <md-content class="md-padding">
-                <div layout-gt-sm="row" layout="column" class="listdemoBasicUsage">
-                  <div flex-gt-sm="100" flex="">
-                    <md-content>
-                      <md-list flex="">
-                        <md-list-item class="md-3-line" ng-repeat="item in lowEmergencies" ng-click="null">
-                          <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}">
-                          <div class="md-list-item-text" layout="column">
-                            <h3>{{ item.creationDate }}</h3>
-                            <h4>{{ item.location.latitude + " " + item.location.longitude }}</h4>
-                            <p>{{ item.type }}</p>
-                          </div>
-                        </md-list-item>
-                      </md-list>
-                    </md-content>
-                  </div>
-                </div>
-              </md-content>
-            </md-tab>
-          </md-tabs>
-        </md-content>
 
       </div>
       <div flex="no-shrink" ng-controller="chatController" >
         <!--<p>User: <input type="text" ng-model="newmessage.id"></p>-->
         <p>Message :<input type="text" ng-model="newmessage.text"></p>
         <button ng-click="insert(newmessage)">Send</button>
+        // Sets the map on all markers in the array.
+        function setMapOnAll(map) {
+          for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(map);
+          }
+        }
 
+        // Removes the markers from the map, but keeps them in the array.
+        function clearMarkers() {
+          setMapOnAll(null);
+        }
+
+        // Shows any markers currently in the array.
+        function showMarkers() {
+          setMapOnAll(map);
+        }
+
+        // Deletes all markers in the array by removing references to them.
+        function deleteMarkers() {
+          clearMarkers();
+          markers = [];
+        }
+
+      </script>
         <ul>
           <li ng-repeat="message in messages">
             {{message.senderName}} :{{message.content}}
@@ -144,12 +126,76 @@
       </div>
     </div>
 
+    <div flex="no-shrink" ng-controller="HomeCtrl" class="scrollDiv">
+      <md-content>
+        <md-tabs md-dynamic-height md-border-bottom md-selected="0">
+          <md-tab label="High Emergency" ng-click="getHighEmergencies()">
+            <md-content class="md-padding">
+              <div layout-gt-sm="row" layout="column" class="listdemoBasicUsage">
+                <div flex-gt-sm="100" flex="">
+                  <md-content>
+                    <md-list flex="">
+                      <md-list-item class="md-3-line" ng-repeat="item in highEmergencies" ng-click="null">
+                        {{paintMarkInMap(item.location.latitude,item.location.longitude)}}
+                        <img ng-src="img/avatar.png" class="md-avatar" alt="icon">
+                        <div class="md-list-item-text" layout="column">
+                          <h3>By {{ item.requesterName }}</h3>
+                          <h4>{{ item.creationDate | date:'medium' }}</h4>
+                        </div>
+                      </md-list-item>
+                    </md-list>
+                  </md-content>
+                </div>
+              </div>
+            </md-content>
+          </md-tab>
+          <md-tab label="Medium Emergency" ng-click="getMediumEmergencies()">
+            <md-content class="md-padding">
+              <div layout-gt-sm="row" layout="column" class="listdemoBasicUsage">
+                <div flex-gt-sm="100" flex="">
+                  <md-content>
+                    <md-list flex="">
+                      <md-list-item class="md-3-line" ng-repeat="item in mediumEmergencies" ng-click="null">
+                        {{paintMarkInMap(item.location.latitude,item.location.longitude)}}
+                        <img ng-src="img/avatar.png" class="md-avatar" alt="icon">
+                        <div class="md-list-item-text" layout="column">
+                          <h3>By {{ item.requesterName }}</h3>
+                          <h4>{{ item.creationDate | date:'medium' }}</h4>
+                        </div>
+                      </md-list-item>
+                    </md-list>
+                  </md-content>
+                </div>
+              </div>
+            </md-content>
+          </md-tab>
+          <md-tab label="Low Emergency" ng-click="getLowEmergencies()">
+            <md-content class="md-padding">
+              <div layout-gt-sm="row" layout="column" class="listdemoBasicUsage">
+                <div flex-gt-sm="100" flex="">
+                  <md-content>
+                    <md-list flex="">
+                      <md-list-item class="md-3-line" ng-repeat="item in lowEmergencies" ng-click="null">
+                        {{paintMarkInMap(item.location.latitude,item.location.longitude)}}
+                        <img ng-src="img/avatar.png" class="md-avatar" alt="icon">
+                        <div class="md-list-item-text" layout="column">
+                          <h3>By {{ item.requesterName }}</h3>
+                          <h4>{{ item.creationDate | date:'medium' }}</h4>
+                        </div>
+                      </md-list-item>
+                    </md-list>
+                  </md-content>
+                </div>
+              </div>
+            </md-content>
+          </md-tab>
+        </md-tabs>
+      </md-content>
+    </div>
   </div>
 
 
-
-
-
+  </div>
 
   <!--<div>Angular seed app: v<span app-version></span></div>-->
 
@@ -164,6 +210,18 @@
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1SgRxNmZF9Vxdz5KsyEhyRF3PqE4wc0A&callback=initMap">
   </script>
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/tether.min.js"></script>
+
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
 
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="app.js"></script>
