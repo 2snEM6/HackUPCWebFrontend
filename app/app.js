@@ -14,10 +14,16 @@ angular.module('myApp', ['firebase',
 }])
 
 .controller('chatController', function($scope, $http, $firebaseArray){
-    var emergencyID = '6ca88a18-53c0-4a95-847a-451b8ff94178';
-    var userID = '2bSMxPpf40UH2DsohodLz7k9DlC3';
+    $scope.emergencyID = '';
+    $scope.userID = 'v45CvHqfffg7Cm6MoteUKwfd8jr1';
 
-    var ref = firebase.database().ref("emergencyMessages/" + emergencyID);
+    $scope.setEmergency = function(item) {
+        console.log(item)
+        $scope.emergencyID = item["key"]
+    }
+
+
+    var ref = firebase.database().ref("emergencyMessages/" + $scope.emergencyID);
 
 
 
@@ -47,7 +53,7 @@ angular.module('myApp', ['firebase',
             data:  JSON.stringify(newMessage),
             headers: {'Content-Type': 'application/json'}
         })*/
-        $http.post('http://alifeapidev.herokuapp.com/users/'+ userID +'/emergencies/'+emergencyID+'/messages', JSON.stringify(newMessage))
+        $http.post('https://alifeapidev.herokuapp.com/users/'+ $scope.userID +'/emergencies/'+ $scope.emergencyID+'/messages', JSON.stringify(newMessage))
             .then(function (response) {
                 if (response.data)
                     console.log("Post Data Submitted Successfully!");
