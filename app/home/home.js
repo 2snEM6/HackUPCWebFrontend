@@ -14,28 +14,27 @@ angular.module('myApp.home', ['ngRoute'])
     $scope.currentNavItem = 'high';
 
     var ref = firebase.database().ref("emergencies");
-    var queryLowEmergencies = ref.orderByChild("type").equalTo(0);
-    var queryMediumEmergencies = ref.orderByChild("type").equalTo(1);
-    var queryHighEmergencies = ref.orderByChild("type").equalTo(2);
 
-    $scope.lowEmergencies = $firebaseArray(queryLowEmergencies);
-    $scope.mediumEmergencies = $firebaseArray(queryMediumEmergencies);
-    $scope.highEmergencies = $firebaseArray(queryHighEmergencies);
 
-    var allEmergencies = $firebaseArray(ref);
-    console.log(allEmergencies);
+    $scope.getHighEmergencies = function() {
+        var queryHighEmergencies = ref.orderByChild("type").equalTo(2);
+        $scope.highEmergencies = $firebaseArray(queryHighEmergencies);
+    };
 
-    allEmergencies.forEach(function (item) {
-        var pos = {
-            lat: item.location.latitude,
-            lng: item.location.longitude
-        };
+    $scope.getMediumEmergencies = function() {
+        var queryMediumEmergencies = ref.orderByChild("type").equalTo(1);
+        $scope.mediumEmergencies = $firebaseArray(queryMediumEmergencies);
+    };
 
-        var marker = new google.maps.Marker({
-            position: pos,
-            map: map
-        });
-    });
+    $scope.getLowEmergencies = function() {
+        var queryLowEmergencies = ref.orderByChild("type").equalTo(0);
+        $scope.lowEmergencies = $firebaseArray(queryLowEmergencies);
+    };
+
+    $scope.getAllEmergencies = function() {
+        var allEmergencies = $firebaseArray(ref);
+        //console.log(allEmergencies);
+    };
 
 });
 
