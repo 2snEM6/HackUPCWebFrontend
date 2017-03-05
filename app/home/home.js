@@ -14,7 +14,7 @@ angular.module('myApp.home', ['ngRoute'])
     $scope.currentNavItem = 'high';
 
     var ref = firebase.database().ref("emergencies");
-
+    $scope.allEmergencies = $firebaseArray(ref);
 
     $scope.getHighEmergencies = function() {
         var queryHighEmergencies = ref.orderByChild("type").equalTo(2);
@@ -31,9 +31,17 @@ angular.module('myApp.home', ['ngRoute'])
         $scope.lowEmergencies = $firebaseArray(queryLowEmergencies);
     };
 
-    $scope.getAllEmergencies = function() {
-        var allEmergencies = $firebaseArray(ref);
-        //console.log(allEmergencies);
+    $scope.paintMarkInMap = function(latitude, longitude) {
+
+        var position = {lat: latitude, lng: longitude};
+
+        var marker = new google.maps.Marker({
+            position: position,
+            animation: google.maps.Animation.DROP,
+            map: map
+        });
+
+        markers.push(marker);
     };
 
 });
