@@ -55,32 +55,24 @@
   <![endif]-->
 
 
-  <div layout="row">
-    <div flex>
-      <!--Navbar-->
-      <nav class="navbar navbar-toggleable-md navbar-dark bg-primary">
-        <div class="container">
-          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <a class="navbar-brand" href="#">
-            <strong>Alife</strong>
-          </a>
-          <div class="collapse navbar-collapse" id="navbarNav1">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link">Home <span class="sr-only">(current)</span></a>
-              </li>
-            </ul>
-            <form class="form-inline waves-effect waves-light">
-              <input class="form-control" type="text" placeholder="Search">
-            </form>
-          </div>
-        </div>
-      </nav>
+  <!--Navbar-->
+  <nav class="navbar navbar-toggleable-md navbar-dark bg-primary">
+    <div class="container">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <h2 class="md-display-1">Alife</h2>
+      </a>
+      <div class="collapse navbar-collapse" id="navbarNav1">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link">Home <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-
+  </nav>
 
   <div layout="row" layout-xs="column">
     <div flex>
@@ -125,7 +117,7 @@
 
     <div flex="no-shrink" ng-controller="HomeCtrl" class="scrollDiv">
       <md-content>
-        <md-tabs md-dynamic-height md-border-bottom>
+        <md-tabs md-dynamic-height md-border-bottom md-selected="0">
           <md-tab label="High Emergency" ng-click="getHighEmergencies()">
             <md-content class="md-padding">
               <div layout-gt-sm="row" layout="column" class="listdemoBasicUsage">
@@ -134,11 +126,10 @@
                     <md-list flex="">
                       <md-list-item class="md-3-line" ng-repeat="item in highEmergencies" ng-click="null">
                         {{paintMarkInMap(item.location.latitude,item.location.longitude)}}
-                        <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}">
+                        <img ng-src="img/avatar.png" class="md-avatar" alt="icon">
                         <div class="md-list-item-text" layout="column">
-                          <h3>{{ item.creationDate }}</h3>
-                          <h4>{{ item.location.latitude + " " + item.location.longitude }}</h4>
-                          <p>{{ item.type }}</p>
+                          <h3>By {{ item.requesterName }}</h3>
+                          <h4>{{ item.creationDate | date:'medium' }}</h4>
                         </div>
                       </md-list-item>
                     </md-list>
@@ -155,11 +146,10 @@
                     <md-list flex="">
                       <md-list-item class="md-3-line" ng-repeat="item in mediumEmergencies" ng-click="null">
                         {{paintMarkInMap(item.location.latitude,item.location.longitude)}}
-                        <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}">
+                        <img ng-src="img/avatar.png" class="md-avatar" alt="icon">
                         <div class="md-list-item-text" layout="column">
-                          <h3>{{ item.creationDate }}</h3>
-                          <h4>{{ item.location.latitude + " " + item.location.longitude }}</h4>
-                          <p>{{ item.type }}</p>
+                          <h3>By {{ item.requesterName }}</h3>
+                          <h4>{{ item.creationDate | date:'medium' }}</h4>
                         </div>
                       </md-list-item>
                     </md-list>
@@ -176,11 +166,10 @@
                     <md-list flex="">
                       <md-list-item class="md-3-line" ng-repeat="item in lowEmergencies" ng-click="null">
                         {{paintMarkInMap(item.location.latitude,item.location.longitude)}}
-                        <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}">
+                        <img ng-src="img/avatar.png" class="md-avatar" alt="icon">
                         <div class="md-list-item-text" layout="column">
-                          <h3>{{ item.creationDate }}</h3>
-                          <h4>{{ item.location.latitude + " " + item.location.longitude }}</h4>
-                          <p>{{ item.type }}</p>
+                          <h3>By {{ item.requesterName }}</h3>
+                          <h4>{{ item.creationDate | date:'medium' }}</h4>
                         </div>
                       </md-list-item>
                     </md-list>
@@ -208,6 +197,9 @@
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1SgRxNmZF9Vxdz5KsyEhyRF3PqE4wc0A&callback=initMap">
   </script>
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
 
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="js/tether.min.js"></script>
