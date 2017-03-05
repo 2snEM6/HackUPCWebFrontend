@@ -23,7 +23,7 @@
     "prestart": "npm install",
     "start": "http-server -a localhost -p 8000 -c-1 ./app",
     "pretest": "npm install",
-    "test": "karma start karma.conf.js",
+    "test": "grunt test",
     "test-single-run": "karma start karma.conf.js --single-run",
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update",
@@ -33,6 +33,12 @@
   },
   "dependencies": {
     "angularfire": "^2.3.0",
-    "firebase": "^3.7.0"
+    "firebase": "^3.7.0",
+    "bower": "1.7.1",
+    "express": "4.13.3"
+  },
+  "engines": {
+    "node": "6.7.0",
+    "npm": "3.10.3"
   }
 }
