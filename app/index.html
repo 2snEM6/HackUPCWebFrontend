@@ -92,7 +92,7 @@
                 <div flex-gt-sm="100" flex="">
                   <md-content>
                     <md-list flex="">
-                      <md-list-item class="md-3-line" ng-repeat="item in highEmergencies" ng-click="">
+                      <md-list-item class="md-3-line" ng-repeat="item in highEmergencies" ng-click="null">
                         {{paintMarkInMap(item.location.latitude,item.location.longitude)}}
                         <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}">
                         <div class="md-list-item-text" layout="column">
@@ -113,7 +113,7 @@
                 <div flex-gt-sm="100" flex="">
                   <md-content>
                     <md-list flex="">
-                      <md-list-item class="md-3-line" ng-repeat="item in mediumEmergencies" ng-click="">
+                      <md-list-item class="md-3-line" ng-repeat="item in mediumEmergencies" ng-click="null">
                         {{paintMarkInMap(item.location.latitude,item.location.longitude)}}
                         <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}">
                         <div class="md-list-item-text" layout="column">
@@ -134,7 +134,7 @@
                 <div flex-gt-sm="100" flex="">
                   <md-content>
                     <md-list flex="">
-                      <md-list-item class="md-3-line" ng-repeat="item in lowEmergencies" ng-click="">
+                      <md-list-item class="md-3-line" ng-repeat="item in lowEmergencies" ng-click="null">
                         {{paintMarkInMap(item.location.latitude,item.location.longitude)}}
                         <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}">
                         <div class="md-list-item-text" layout="column">
