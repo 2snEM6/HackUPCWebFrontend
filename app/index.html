@@ -61,101 +61,95 @@
         }
       </script>
     </div>
-    <!--
-    <div>
-      <div class="navBardemoBasicUsage" flex="no-shrink">
-        <md-content class="md-padding">
-          <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-            <md-nav-item md-nav-href="#!/high" name="high">
-              High Emergency
-            </md-nav-item>
-            <md-nav-item md-nav-href="#!/medium" name="medium">
-              Medium Emergency
-            </md-nav-item>
-            <md-nav-item md-nav-href="#!/low" name="low">
-              Low Emergency
-            </md-nav-item>
-          </md-nav-bar>
+    <div flex layout="column">
+
+      <div flex="no-shrink" ng-controller="HomeCtrl">
+        <md-content>
+          <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="High Emergency" ng-click="getHighEmergencies()">
+              <md-content class="md-padding">
+                <div layout-gt-sm="row" layout="column" class="listdemoBasicUsage">
+                  <div flex-gt-sm="100" flex="">
+                    <md-content>
+                      <md-list flex="">
+                        <md-list-item class="md-3-line" ng-repeat="item in highEmergencies" ng-click="null">
+                          <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}">
+                          <div class="md-list-item-text" layout="column">
+                            <h3>{{ item.creationDate }}</h3>
+                            <h4>{{ item.location.latitude + " " + item.location.longitude }}</h4>
+                            <p>{{ item.type }}</p>
+                          </div>
+                        </md-list-item>
+                      </md-list>
+                    </md-content>
+                  </div>
+                </div>
+              </md-content>
+            </md-tab>
+            <md-tab label="Medium Emergency" ng-click="getMediumEmergencies()">
+              <md-content class="md-padding">
+                <div layout-gt-sm="row" layout="column" class="listdemoBasicUsage">
+                  <div flex-gt-sm="100" flex="">
+                    <md-content>
+                      <md-list flex="">
+                        <md-list-item class="md-3-line" ng-repeat="item in mediumEmergencies" ng-click="null">
+                          <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}">
+                          <div class="md-list-item-text" layout="column">
+                            <h3>{{ item.creationDate }}</h3>
+                            <h4>{{ item.location.latitude + " " + item.location.longitude }}</h4>
+                            <p>{{ item.type }}</p>
+                          </div>
+                        </md-list-item>
+                      </md-list>
+                    </md-content>
+                  </div>
+                </div>
+
+              </md-content>
+            </md-tab>
+            <md-tab label="Low Emergency" ng-click="getLowEmergencies()">
+              <md-content class="md-padding">
+                <div layout-gt-sm="row" layout="column" class="listdemoBasicUsage">
+                  <div flex-gt-sm="100" flex="">
+                    <md-content>
+                      <md-list flex="">
+                        <md-list-item class="md-3-line" ng-repeat="item in lowEmergencies" ng-click="null">
+                          <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}">
+                          <div class="md-list-item-text" layout="column">
+                            <h3>{{ item.creationDate }}</h3>
+                            <h4>{{ item.location.latitude + " " + item.location.longitude }}</h4>
+                            <p>{{ item.type }}</p>
+                          </div>
+                        </md-list-item>
+                      </md-list>
+                    </md-content>
+                  </div>
+                </div>
+              </md-content>
+            </md-tab>
+          </md-tabs>
         </md-content>
 
-        <div ng-view></div>
+      </div>
+      <div flex="no-shrink" ng-controller="chatController" >
+        <!--<p>User: <input type="text" ng-model="newmessage.id"></p>-->
+        <p>Message :<input type="text" ng-model="newmessage.text"></p>
+        <button ng-click="insert(newmessage)">Send</button>
 
+        <ul>
+          <li ng-repeat="message in messages">
+            {{message.senderName}} :{{message.content}}
+          </li>
+        </ul>
       </div>
     </div>
-    -->
-
-    <div flex="no-shrink" ng-controller="HomeCtrl">
-      <md-content>
-        <md-tabs md-dynamic-height md-border-bottom>
-          <md-tab label="High Emergency" ng-click="getHighEmergencies()">
-            <md-content class="md-padding">
-              <div layout-gt-sm="row" layout="column" class="listdemoBasicUsage">
-                <div flex-gt-sm="100" flex="">
-                  <md-content>
-                    <md-list flex="">
-                      <md-list-item class="md-3-line" ng-repeat="item in highEmergencies" ng-click="null">
-                        <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}">
-                        <div class="md-list-item-text" layout="column">
-                          <h3>{{ item.creationDate }}</h3>
-                          <h4>{{ item.location.latitude + " " + item.location.longitude }}</h4>
-                          <p>{{ item.type }}</p>
-                        </div>
-                      </md-list-item>
-                    </md-list>
-                  </md-content>
-                </div>
-              </div>
-            </md-content>
-          </md-tab>
-          <md-tab label="Medium Emergency" ng-click="getMediumEmergencies()">
-            <md-content class="md-padding">
-              <div layout-gt-sm="row" layout="column" class="listdemoBasicUsage">
-                <div flex-gt-sm="100" flex="">
-                  <md-content>
-                    <md-list flex="">
-                      <md-list-item class="md-3-line" ng-repeat="item in mediumEmergencies" ng-click="null">
-                        <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}">
-                        <div class="md-list-item-text" layout="column">
-                          <h3>{{ item.creationDate }}</h3>
-                          <h4>{{ item.location.latitude + " " + item.location.longitude }}</h4>
-                          <p>{{ item.type }}</p>
-                        </div>
-                      </md-list-item>
-                    </md-list>
-                  </md-content>
-                </div>
-              </div>
-
-            </md-content>
-          </md-tab>
-          <md-tab label="Low Emergency" ng-click="getLowEmergencies()">
-            <md-content class="md-padding">
-              <div layout-gt-sm="row" layout="column" class="listdemoBasicUsage">
-                <div flex-gt-sm="100" flex="">
-                  <md-content>
-                    <md-list flex="">
-                      <md-list-item class="md-3-line" ng-repeat="item in lowEmergencies" ng-click="null">
-                        <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}">
-                        <div class="md-list-item-text" layout="column">
-                          <h3>{{ item.creationDate }}</h3>
-                          <h4>{{ item.location.latitude + " " + item.location.longitude }}</h4>
-                          <p>{{ item.type }}</p>
-                        </div>
-                      </md-list-item>
-                    </md-list>
-                  </md-content>
-                </div>
-              </div>
-            </md-content>
-          </md-tab>
-        </md-tabs>
-      </md-content>
-    </div>
-
-
-
 
   </div>
+
+
+
+
+
 
   <!--<div>Angular seed app: v<span app-version></span></div>-->
 
